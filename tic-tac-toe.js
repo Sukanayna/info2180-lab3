@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', function(){
     function switch_player(){ 
         if (player == "X"){
             player = "O";
-            status.innerHTML = `Player ${player}'s turn`;
+            status.innerHTML = `It's ${player}'s turn!`;
         }
         else if(player == "O"){
                 player = "X";
-                status.innerHTML = `Player ${player}'s turn`;
+                status.innerHTML = `It's ${player}'s turn!`;    
         }
     }
 
@@ -50,6 +50,14 @@ document.addEventListener('DOMContentLoaded', function(){
                 
                 choice[index] = player;
 
+                if (winner(index, player) == true){ 
+                    gameState = false;
+                    status.classList.add("you-won");
+                    status.innerHTML = `Congratulations! ${player} is the Winner!`;
+            
+
+                };
+
             switch_player()
             
             }
@@ -58,4 +66,80 @@ document.addEventListener('DOMContentLoaded', function(){
         
         
     })
+
+    function winner(index, player){
+     
+        if (index == 0){
+            if((choice[1] == player && choice[2] == player) || 
+            (choice[4]==player && choice[8]==player) || 
+            (choice[3]==player && choice[6] == player)){
+                return true;
+            }
+        }
+
+        else if(index == 1){
+            if((choice[0] == player && choice[2] == player) || 
+            (choice[4] == player && choice[7] == player)){
+                return true;
+            }
+        }
+
+        else if(index == 2){
+            if((choice[0] == player && choice[1] == player) || 
+            (choice[4] == player && choice[6] == player) ||
+            (choice[5] == player && choice[8] == player)){
+                return true;
+            }
+        }
+
+        else if(index == 3){
+            if((choice[4] == player && choice[5] == player) ||
+            (choice[0] == player && choice[6] == player)){
+                return true;
+            }
+        }
+
+        else if(index == 4){
+            if((choice[3] == player && choice[5] == player) ||
+            (choice[0] == player && choice[8] == player) ||
+            (choice[2] == player && choice[6] == player)){
+                return true;
+            }
+        }
+
+        else if(index == 5){
+            if((choice[3] == player && choice[4] == player) ||
+            (choice[2] == player && choice[8] == player)){
+                return true;
+            }
+        }
+
+        else if(index == 6){
+            if((choice[7] == player && choice[8] == player) ||
+            (choice[2] == player && choice[4] == player) ||
+            (choice[0] == player && choice[3] == player)){
+                return true;
+            }
+        }
+
+        else if(index == 7){
+            if ((choice[6] == player && choice[8] == player) ||
+            (choice[1] == player && choice[4] == player)){
+                return true;
+            }
+        }
+
+        else if(index == 8){
+            if((choice[6] == player && choice[7] == player) ||
+            (choice[0] == player && choice[4] == player) || 
+            (choice[2] == player && choice[5] == player)){
+                return true;
+            }
+        }
+
+        return false; 
+        
+    };
+    
+
 });
