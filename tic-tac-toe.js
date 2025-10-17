@@ -9,17 +9,13 @@ document.addEventListener('DOMContentLoaded', function(){
     const status = document.querySelector("#status");
     let controls = document.querySelector(".controls");
     const newGame = controls.querySelector('.btn');
-    status.innerHTML += ` Starting with ${player}`;
-
 
     function switch_player(){ 
         if (player == "X"){
             player = "O";
-            status.innerHTML = `It's ${player}'s turn!`;
         }
         else if(player == "O"){
-                player = "X";
-                status.innerHTML = `It's ${player}'s turn!`;    
+                player = "X";   
         }
     }
 
@@ -49,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 box.innerHTML = player;
                 
                 choice[index] = player;
+                status.innerHTML = `It's ${player == "X" ? "O" : "X"}'s turn!`;
 
                 if (winner(index, player) == true){ 
                     gameState = false;
@@ -140,6 +137,21 @@ document.addEventListener('DOMContentLoaded', function(){
         return false; 
         
     };
-    
+    newGame.addEventListener("click", () => { 
+        
+        squares.forEach(box => {
+            box.classList.remove("X")
+            box.classList.remove("O")
+            box.innerHTML="";
+
+        });
+
+        choice = [] 
+        status.classList.remove("you-won")
+        status.innerHTML = "Move your mouse over a square and click to play an X or an O.";
+        gameState = true; 
+        player = "X";
+
+    })
 
 });
