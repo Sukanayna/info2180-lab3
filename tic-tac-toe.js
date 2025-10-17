@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function(){
     const status = document.querySelector("#status");
     let controls = document.querySelector(".controls");
     const newGame = controls.querySelector('.btn');
-    status.innerHTML += ` Starting with Player ${player}'s turn`;
+    status.innerHTML += ` Starting with ${player}`;
 
 
     function switch_player(){ 
@@ -25,6 +25,15 @@ document.addEventListener('DOMContentLoaded', function(){
 
     squares.forEach(function(box, index){
         box.classList.add('square'); 
+    
+        box.addEventListener("mouseover", () => {
+            box.style.cursor = "pointer";
+            box.classList.add("hover");
+        })
+
+        box.addEventListener("mouseout",()=>{ 
+            box.classList.remove("hover");
+        });
 
         box.addEventListener("click", function(e){ 
 
